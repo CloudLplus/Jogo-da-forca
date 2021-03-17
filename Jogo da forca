@@ -1,0 +1,91 @@
+#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  //introduzindo as variaveis
+    char palavra[30],letra[1],secreta[30];
+    int chances;
+    int tamanho;
+    int ii;
+    bool acertou;
+    int acertos;
+
+    //Atribuindo valores as variaveis
+    chances=7;
+    tamanho=0;
+    acertou=false;
+    acertos=0;
+    ii=0;
+
+    //Adquirindo a palavra secreta
+    cout<<"Por favor mande seu amigo cobrir os olhos e digite a palavra secreta: ";
+    cin >>palavra;
+
+  //descobrindo o tamanho da palavra secreta 
+   while(palavra[ii] !='\0'){
+    ii++;
+    tamanho++;
+   }
+
+
+    //determinando que a quantidade de "-" na tela será o tamanho da palavra secreta
+   for(int in=0; in<30; in++){
+    secreta[in]= '-';
+   }
+
+  //Loop principal
+  //caso chances seja igual a 0 ira sair do loop principal.
+  //caso o numero de acertos seja igual ao tamanho da palavra secreta significa que o usuario acertou
+  //logo irá sair do looping principal.
+   while((chances>0) && (acertos<tamanho)){
+   
+   //imprimindo na tela "-" na quantidade determinada antes
+    system("cls");
+    cout<<"Chances: "<<chances<<"\n \n";
+
+    cout<<"Palavra secreta: ";
+
+    for(int in=0;in<tamanho;in++){
+        cout<<secreta[in];
+    }
+    
+    //Pedindo um caractere
+    cout<<endl;
+    cout<<"Resposta: ";
+    cin>> letra[0];
+    
+    //checando se o caractere existe na palavra secreta, caso exista, substituir o "-" na posição 'p' pelo caractere introduzido antes.
+    //e aumentando o numero de acertos.
+    for(int p=0;p<tamanho;p++){
+        if(palavra[p]==letra[0]){
+            secreta[p]=palavra[p];
+            acertos++;
+            acertou=true;
+        }
+
+    }
+
+  //caso o caractere não exista na palavra secreta diminuir o numero de chances.
+    if(!acertou){
+        chances--;
+    }
+    acertou=false;
+
+   }
+   //checando se o usuario ganhou o jogo ou não, e imprimindo na tela a resposta
+   //para cada caso.
+   if(acertos==tamanho){
+    cout<<"Parabens, voce ganhou!"<<endl;
+   }else{
+   cout<<"infelizmente voce perdeu"<<endl;
+
+   }
+
+
+
+   system("pause");
+   return 0;
+}
